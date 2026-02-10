@@ -5,104 +5,116 @@
 <title>דולה 💕</title>
 
 <style>
+*{
     margin:0;
-height:100vh;
-background:linear-gradient(#ff9a9e,#fad0c4);
-overflow:hidden;
-text-align:center;
-font-family:Arial;
-}
-.star{
-    position:fixed;
-    width:2px;
-    height:2px;
-    background:white;
-    border-radius:50%;
-    top:0;
-    animation:fallStar linear infinite;
-    opacity:0.8;
-}
-  @keyframes floatTitle{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-10px);}
-    100%{transform:translateY(0);}
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
-h1{
-    animation:floatTitle 3s ease-in-out infinite, fadeIn 2s;
-}
-
-@keyframes fallStar{
-    to{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-}
 body{
+    height:100vh;
+    background:radial-gradient(circle at top, #ffb6c1, #ff4d6d);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
 
-  
+/* קונטיינר מרכזי */
+.container{
+    z-index:10;
+    animation:fadeIn 2s;
+}
+
+/* כותרת */
 h1{
-margin-top:80px;
-animation:fadeIn 2s;
+    font-size:34px;
+    color:white;
+    margin-bottom:25px;
+    animation:float 3s ease-in-out infinite;
+}
+
+/* כפתורים */
+.buttons{
+    margin-bottom:20px;
 }
 
 button{
-font-size:22px;
-padding:12px 30px;
-border:none;
-border-radius:30px;
-margin:20px;
-cursor:pointer;
-background:#ff4d6d;
-color:white;
-transition:.3s;
+    font-size:22px;
+    padding:12px 35px;
+    border:none;
+    border-radius:40px;
+    margin:10px;
+    cursor:pointer;
+    background:#ff1e56;
+    color:white;
+    transition:.3s;
 }
 
-button:hover{transform:scale(1.1);}
+button:hover{
+    transform:scale(1.1);
+}
 
-#no{position:absolute;}
+#no{
+    position:absolute;
+}
 
+/* תמונה */
 img{
-width:280px;
-border-radius:25px;
-display:none;
-margin-top:20px;
-animation:pop 1s;
-box-shadow:0 0 20px pink;
+    width:280px;
+    border-radius:25px;
+    display:none;
+    margin:20px auto;
+    box-shadow:0 0 30px rgba(255,255,255,0.7);
+    animation:pop 1s;
 }
 
+/* טקסט */
 p{
-font-size:22px;
-display:none;
-animation:fadeIn 2s;
+    font-size:22px;
+    color:white;
+    display:none;
+    line-height:1.6;
+    animation:fadeIn 2s;
 }
 
+/* לבבות */
 .heart{
-position:fixed;
-top:-10px;
-font-size:24px;
-animation:fall linear infinite;
+    position:fixed;
+    top:-20px;
+    font-size:26px;
+    animation:fall linear infinite;
 }
 
+/* זיקוקים */
 canvas{
-position:fixed;
-top:0;
-left:0;
-pointer-events:none;
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
 }
 
+/* אנימציות */
 @keyframes fall{
-to{transform:translateY(100vh);opacity:0;}
+    to{transform:translateY(110vh);opacity:0;}
 }
 
 @keyframes pop{
-0%{transform:scale(0);}
-100%{transform:scale(1);}
+    from{transform:scale(0);}
+    to{transform:scale(1);}
 }
 
 @keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+    100%{transform:translateY(0);}
 }
 </style>
 </head>
@@ -111,21 +123,23 @@ to{opacity:1;}
 
 <canvas id="fire"></canvas>
 
-<h1>?דולה שלי האם את פנויה ביום האהבה  💘</h1>
+<div class="container">
+    <h1>דולה שלי 💘<br>האם את פנויה ביום האהבה?</h1>
 
-<button onclick="yes()">כן 😍</button>
-<button id="no">לא 🙄</button>
+    <div class="buttons">
+        <button onclick="yes()">כן 😍</button>
+        <button id="no">לא 🙄</button>
+    </div>
 
-<br>
+    <img id="pic" src="image.JPG">
 
-<img id="pic" src="image.JPG">
-
-<p id="text">
-    ידעתי שתגידי כן דולה שלי ❤️  
-את עושה לי את הלב שמח כל יום מחדש.  
-ביום האהבה אני רוצה להיות רק איתך 🥰
-  (סליחה שבוע אחרי בגלל המילואים)
-</p>
+    <p id="text">
+        ידעתי שתגידי כן דולה שלי ❤️<br>
+        את עושה לי את הלב שמח כל יום מחדש.<br>
+        ביום האהבה אני רוצה להיות רק איתך 🥰<br>
+        (סליחה שבוע אחרי בגלל המילואים)
+    </p>
+</div>
 
 <audio id="song" src="song.mp3"></audio>
 
@@ -136,23 +150,23 @@ const text=document.getElementById("text");
 const song=document.getElementById("song");
 
 function move(){
-let x=Math.random()*(window.innerWidth-100);
-let y=Math.random()*(window.innerHeight-100);
-no.style.left=x+"px";
-no.style.top=y+"px";
+    let x=Math.random()*(window.innerWidth-120);
+    let y=Math.random()*(window.innerHeight-80);
+    no.style.left=x+"px";
+    no.style.top=y+"px";
 }
 
 no.addEventListener("mouseover",move);
 no.addEventListener("touchstart",move);
 
 function yes(){
-pic.style.display="block";
-text.style.display="block";
-song.play();
-if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
-fireworks();
+    pic.style.display="block";
+    text.style.display="block";
+    song.play();
+    fireworks();
 }
-// לבבות נופלים כבר מההתחלה
+
+/* לבבות נופלים */
 setInterval(()=>{
     let h=document.createElement("div");
     h.className="heart";
@@ -161,44 +175,28 @@ setInterval(()=>{
     h.style.animationDuration=2+Math.random()*3+"s";
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),5000);
-},150);
-  
-// לבבות
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="❤️";
-h.style.left=Math.random()*100+"vw";
-h.style.animationDuration=2+Math.random()*3+"s";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),5000);
-},200);
+},180);
 
-// זיקוקים
+/* זיקוקים */
 const canvas=document.getElementById("fire");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
-  // יצירת כוכבים ברקע
-for(let i=0;i<50;i++){
-    let s=document.createElement("div");
-    s.className="star";
-    s.style.left=Math.random()*100+"vw";
-    s.style.animationDuration=3+Math.random()*4+"s";
-    document.body.appendChild(s);
-    setInterval(()=>s.style.top=0,7000);
-}
 function fireworks(){
-for(let i=0;i<150;i++){
-setTimeout(()=>{
-ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
-ctx.beginPath();
-ctx.arc(Math.random()*canvas.width,Math.random()*canvas.height/2,3,0,Math.PI*2);
-ctx.fill();
-},i*15);
-}
-setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),3000);
+    for(let i=0;i<120;i++){
+        setTimeout(()=>{
+            ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
+            ctx.beginPath();
+            ctx.arc(
+                Math.random()*canvas.width,
+                Math.random()*canvas.height/2,
+                3,0,Math.PI*2
+            );
+            ctx.fill();
+        },i*15);
+    }
+    setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),3000);
 }
 </script>
 
