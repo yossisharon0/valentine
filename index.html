@@ -1,60 +1,94 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>דולה 💕</title>
+<title>For You ❤️</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
 }
 
 body{
     height:100vh;
-    background:radial-gradient(circle at top, #ffb6c1, #ff4d6d);
-    overflow:hidden;
+    background:
+        radial-gradient(circle at top, #ffb3c6, transparent 60%),
+        linear-gradient(160deg,#ff758c,#ff4d6d);
     display:flex;
     justify-content:center;
     align-items:center;
-    text-align:center;
+    font-family:'Heebo', sans-serif;
+    color:#fff;
+    overflow:hidden;
 }
 
-/* קונטיינר מרכזי */
-.container{
+/* רקע עדין */
+.bg-glow{
+    position:fixed;
+    width:700px;
+    height:700px;
+    background:radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+    filter:blur(60px);
+    animation:float 12s ease-in-out infinite;
+}
+
+/* כרטיס */
+.card{
+    position:relative;
     z-index:10;
-    animation:fadeIn 2s;
+    width:100%;
+    max-width:560px;
+    padding:55px 60px;
+    border-radius:32px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(18px);
+    box-shadow:0 35px 80px rgba(0,0,0,0.35);
+    text-align:center;
+    animation:fadeUp 1.6s ease-out;
 }
 
-/* כותרת */
+/* טקסט */
 h1{
-    font-size:34px;
-    color:white;
-    margin-bottom:25px;
-    animation:float 3s ease-in-out infinite;
+    font-size:44px;
+    font-weight:700;
+    line-height:1.25;
+    margin-bottom:35px;
+}
+
+.subtitle{
+    font-size:22px;
+    font-weight:300;
+    opacity:0.9;
+    margin-bottom:45px;
 }
 
 /* כפתורים */
 .buttons{
-    margin-bottom:20px;
+    display:flex;
+    justify-content:center;
+    gap:25px;
 }
 
 button{
-    font-size:22px;
-    padding:12px 35px;
+    font-size:24px;
+    padding:16px 48px;
     border:none;
-    border-radius:40px;
-    margin:10px;
+    border-radius:50px;
     cursor:pointer;
-    background:#ff1e56;
-    color:white;
-    transition:.3s;
+    font-weight:600;
+    color:#fff;
+    background:linear-gradient(135deg,#ff1e56,#ff6b81);
+    box-shadow:0 12px 30px rgba(0,0,0,0.3);
+    transition:0.35s;
 }
 
 button:hover{
-    transform:scale(1.1);
+    transform:translateY(-4px) scale(1.05);
 }
 
 #no{
@@ -63,20 +97,21 @@ button:hover{
 
 /* תמונה */
 img{
-    width:280px;
-    border-radius:25px;
+    width:100%;
+    max-width:380px;
+    border-radius:26px;
+    margin:35px auto 20px;
     display:none;
-    margin:20px auto;
-    box-shadow:0 0 30px rgba(255,255,255,0.7);
-    animation:pop 1s;
+    box-shadow:0 0 50px rgba(255,255,255,0.55);
+    animation:pop 0.8s ease;
 }
 
-/* טקסט */
-p{
-    font-size:22px;
-    color:white;
+/* טקסט סיום */
+.message{
+    font-size:24px;
+    line-height:1.7;
+    font-weight:400;
     display:none;
-    line-height:1.6;
     animation:fadeIn 2s;
 }
 
@@ -88,22 +123,14 @@ p{
     animation:fall linear infinite;
 }
 
-/* זיקוקים */
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    pointer-events:none;
-}
-
 /* אנימציות */
 @keyframes fall{
     to{transform:translateY(110vh);opacity:0;}
 }
 
 @keyframes pop{
-    from{transform:scale(0);}
-    to{transform:scale(1);}
+    from{transform:scale(0.85);opacity:0;}
+    to{transform:scale(1);opacity:1;}
 }
 
 @keyframes fadeIn{
@@ -111,9 +138,14 @@ canvas{
     to{opacity:1;}
 }
 
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
 @keyframes float{
     0%{transform:translateY(0);}
-    50%{transform:translateY(-12px);}
+    50%{transform:translateY(-30px);}
     100%{transform:translateY(0);}
 }
 </style>
@@ -121,10 +153,11 @@ canvas{
 
 <body>
 
-<canvas id="fire"></canvas>
+<div class="bg-glow"></div>
 
-<div class="container">
-    <h1>דולה שלי 💘<br>האם את פנויה ביום האהבה?</h1>
+<div class="card">
+    <h1>דולה שלי ❤️</h1>
+    <div class="subtitle">האם את פנויה ביום האהבה?</div>
 
     <div class="buttons">
         <button onclick="yes()">כן 😍</button>
@@ -133,12 +166,12 @@ canvas{
 
     <img id="pic" src="image.JPG">
 
-    <p id="text">
-        ידעתי שתגידי כן דולה שלי ❤️<br>
+    <div class="message" id="text">
+        ידעתי שתגידי כן ❤️<br>
         את עושה לי את הלב שמח כל יום מחדש.<br>
         ביום האהבה אני רוצה להיות רק איתך 🥰<br>
-        (סליחה שבוע אחרי בגלל המילואים)
-    </p>
+        <small style="opacity:0.8">(סליחה שבוע אחרי בגלל המילואים)</small>
+    </div>
 </div>
 
 <audio id="song" src="song.mp3"></audio>
@@ -150,8 +183,8 @@ const text=document.getElementById("text");
 const song=document.getElementById("song");
 
 function move(){
-    let x=Math.random()*(window.innerWidth-120);
-    let y=Math.random()*(window.innerHeight-80);
+    let x=Math.random()*(window.innerWidth-140);
+    let y=Math.random()*(window.innerHeight-100);
     no.style.left=x+"px";
     no.style.top=y+"px";
 }
@@ -163,41 +196,18 @@ function yes(){
     pic.style.display="block";
     text.style.display="block";
     song.play();
-    fireworks();
 }
 
-/* לבבות נופלים */
+/* לבבות */
 setInterval(()=>{
     let h=document.createElement("div");
     h.className="heart";
     h.innerHTML="❤️";
     h.style.left=Math.random()*100+"vw";
-    h.style.animationDuration=2+Math.random()*3+"s";
+    h.style.animationDuration=3+Math.random()*3+"s";
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),5000);
-},180);
-
-/* זיקוקים */
-const canvas=document.getElementById("fire");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-function fireworks(){
-    for(let i=0;i<120;i++){
-        setTimeout(()=>{
-            ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
-            ctx.beginPath();
-            ctx.arc(
-                Math.random()*canvas.width,
-                Math.random()*canvas.height/2,
-                3,0,Math.PI*2
-            );
-            ctx.fill();
-        },i*15);
-    }
-    setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),3000);
-}
+    setTimeout(()=>h.remove(),6000);
+},220);
 </script>
 
 </body>
