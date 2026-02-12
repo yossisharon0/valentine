@@ -72,7 +72,7 @@ h1{
     justify-content:center;
     align-items:center;
     gap:25px;
-    flex-wrap:nowrap; /* מונע ירידה לשורה */
+    flex-wrap:nowrap;
 }
 
 button{
@@ -86,16 +86,14 @@ button{
     background:linear-gradient(135deg,#ff1e56,#ff6b81);
     box-shadow:0 12px 30px rgba(0,0,0,0.3);
     transition:0.35s;
-    white-space:nowrap; /* מונע שבירת טקסט */
+    white-space:nowrap;
 }
 
 button:hover{
     transform:translateY(-4px) scale(1.05);
 }
 
-#no{
-    position:absolute;
-}
+/* ❌ הורדנו position:absolute מפה */
 
 /* תמונה */
 img{
@@ -185,6 +183,7 @@ const text=document.getElementById("text");
 const song=document.getElementById("song");
 
 function move(){
+    no.style.position="absolute"; // עכשיו רק כשהוא זז הוא הופך ל-absolute
     let x=Math.random()*(window.innerWidth-140);
     let y=Math.random()*(window.innerHeight-100);
     no.style.left=x+"px";
